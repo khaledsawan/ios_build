@@ -12,7 +12,6 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 
-	<!-- ✅ الصحيح مع Flutter و Codemagic -->
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 
@@ -67,7 +66,30 @@
 	<key>UIStatusBarHidden</key>
 	<false/>
 
-	<!-- 🔐 App Transport Security (اختياري – مو مطلوب عادة) -->
+	<!-- ✅ Google Sign-In Return URL -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.105652923204-oeb8umlf3vmdv1g2841usu24qqtca022</string>
+			</array>
+		</dict>
+	</array>
+
+	<!-- 📸 Camera & Photos Permissions -->
+	<key>NSCameraUsageDescription</key>
+	<string>We need camera access so you can upload photos.</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need photo library access so you can upload images.</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need permission to save photos.</string>
+
+	<!-- 🔐 Network Security -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
