@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class NetworkInfo {
   Future<bool> get isConnected;
@@ -12,12 +13,14 @@ class NetworkInfoImpl implements NetworkInfo {
   @override
   Future<bool> get isConnected async {
     try {
-      final result = await connectivity.checkConnectivity();
+      // Always run on the main isolate
+      final result = await Connectivity().checkConnectivity();
       // ignore: unrelated_type_equality_checks
       return result != ConnectivityResult.none;
     } catch (e) {
-      // If connectivity check fails, assume connected to avoid crashes
-      return true;
+      // If connectivity check fails, assume not connected
+      debugPrint('Connectivity check failed: $e');
+      return false;
     }
   }
 }
