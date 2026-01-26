@@ -28,14 +28,14 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
-        BlocProvider(create: (context) => ClinicsCubit()..getAllClinics()),
+        BlocProvider(create: (context) => ClinicsCubit()),
         BlocProvider(
-          create: (context) => AccountDetailsCubit()..fetchAccountDetails(),
+          create: (context) => AccountDetailsCubit(),
         ),
-        BlocProvider(create: (context) => ReviewsCubit()..getAllReviews()),
+        BlocProvider(create: (context) => ReviewsCubit()),
         BlocProvider(create: (context) => ReviewsClinicIDCubit()),
-        BlocProvider(create: (context) => OffersCubit()..getAllOfferss()),
-        BlocProvider(create: (context) => LocationsCubit()..getAllLocations()),
+        BlocProvider(create: (context) => OffersCubit()),
+        BlocProvider(create: (context) => LocationsCubit()),
         BlocProvider(create: (context) => PasswordCubit()),
       ],
       child: MyApp(),
