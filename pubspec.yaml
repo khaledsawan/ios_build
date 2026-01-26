@@ -43,8 +43,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   intl: ^0.20.2
   url_launcher: ^6.3.2
-  connectivity_plus: ^6.1.1
-  data_connection_checker_tv: ^0.3.5-nullsafety
+  internet_connection_checker: ^3.0.1
   stack_trace: ^1.12.1
 
 dev_dependencies:

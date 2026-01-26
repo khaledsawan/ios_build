@@ -10,7 +10,7 @@ import 'package:glowguide/features/locations/domain/usecases/add_new_location_us
 import 'package:glowguide/features/locations/domain/usecases/delete_location_usecase.dart';
 import 'package:glowguide/features/locations/domain/usecases/get_all_locations_usecase.dart';
 import 'package:glowguide/features/locations/presentation/cubit/locations_states.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +22,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
 
     final failureOrLocations = await GetAllLocationsUsecase(
       repository: LocationsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: LocationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
@@ -54,7 +54,8 @@ class LocationsCubit extends Cubit<LocationsStates> {
 
     final failureOrAdded = await AddNewLocationUsecase(
             repository: LocationsRepositoryImpl(
-                networkInfo: NetworkInfoImpl(Connectivity()),
+                networkInfo:
+                    NetworkInfoImpl(InternetConnectionChecker.instance),
                 remoteDataSource:
                     LocationsRemoteDataSource(api: DioConsumer(dio: Dio())),
                 localDataSource:
@@ -71,7 +72,8 @@ class LocationsCubit extends Cubit<LocationsStates> {
 
     final failureOrDeleted = await DeleteLocationUsecase(
             repository: LocationsRepositoryImpl(
-                networkInfo: NetworkInfoImpl(Connectivity()),
+                networkInfo:
+                    NetworkInfoImpl(InternetConnectionChecker.instance),
                 remoteDataSource:
                     LocationsRemoteDataSource(api: DioConsumer(dio: Dio())),
                 localDataSource:

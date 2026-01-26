@@ -1,25 +1,21 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/foundation.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 abstract class NetworkInfo {
   Future<bool> get isConnected;
 }
 
 class NetworkInfoImpl implements NetworkInfo {
-  final Connectivity connectivity;
+  final InternetConnectionChecker _connectionChecker;
 
-  NetworkInfoImpl(this.connectivity);
+  NetworkInfoImpl(this._connectionChecker);
 
   @override
   Future<bool> get isConnected async {
     try {
-      // Always run on the main isolate
-      final result = await Connectivity().checkConnectivity();
-      // ignore: unrelated_type_equality_checks
-      return result != ConnectivityResult.none;
+      // هذا يتحقق من اتصال الإنترنت الفعلي وليس فقط الشبكة
+      return await _connectionChecker.hasConnection;
     } catch (e) {
-      // If connectivity check fails, assume not connected
-      debugPrint('Connectivity check failed: $e');
+      // لو صار أي خطأ، يرجع false بدل ما يكرش التطبيق
       return false;
     }
   }

@@ -8,9 +8,9 @@ import 'package:glowguide/features/auth/data/source/auth_remote_data_source.dart
 import 'package:glowguide/features/auth/domain/usecases/login_user_usecase.dart';
 import 'package:glowguide/features/auth/domain/usecases/sign_up_clinic_owner_usecase.dart';
 import 'package:glowguide/features/auth/presentation/cubit/auth_states.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitial());
@@ -20,7 +20,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
     final failureOrLoggedInUser = await LoginUserUsecase(
       repository: AuthRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: AuthRemoteDataSource(api: DioConsumer(dio: Dio())),
       ),
     ).call(params: params);
@@ -70,7 +70,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
     final failureOrSignupClinicOwner = await SignUpClinicOwnerUsecase(
       repository: AuthRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: AuthRemoteDataSource(api: DioConsumer(dio: Dio())),
       ),
     ).call(params: params);

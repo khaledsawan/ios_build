@@ -9,7 +9,7 @@ import 'package:glowguide/features/reviews/domain/usecase/admin_approve_reject_r
 import 'package:glowguide/features/reviews/domain/usecase/get_all_reviews_usecase.dart';
 import 'package:glowguide/features/reviews/domain/usecase/write_a_review_usecase.dart';
 import 'package:glowguide/features/reviews/presentation/cubit/reviews_states.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +21,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
 
     final failureOrGetReviews = await GetAllReviewsUsecase(
       repository: ReviewsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
       ),
@@ -38,7 +38,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
 
     final failureOrWriteReview = await WriteAReviewUsecase(
       repository: ReviewsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
       ),
@@ -57,7 +57,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
 
     final response = await AdminApproveRejectReviewUsecase(
       repository: ReviewsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
       ),

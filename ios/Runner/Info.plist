@@ -96,5 +96,11 @@
 		<false/>
 	</dict>
 
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Needed to access network info</string>
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Needed to access network info</string>
+
 </dict>
 </plist>

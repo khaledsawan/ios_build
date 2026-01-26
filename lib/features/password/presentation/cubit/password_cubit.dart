@@ -8,7 +8,7 @@ import 'package:glowguide/features/password/domain/usecase/reset_password_by_pas
 import 'package:glowguide/features/password/domain/usecase/reset_password_usecase.dart';
 import 'package:glowguide/features/password/domain/usecase/set_new_password_usecase.dart';
 import 'package:glowguide/features/password/presentation/cubit/password_states.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class PasswordCubit extends Cubit<PasswordStates> {
 
     final failureOrResetPassword = await ResetPasswordUsecase(
       repository: PasswordRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: PasswordRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
@@ -38,7 +38,8 @@ class PasswordCubit extends Cubit<PasswordStates> {
 
     final failureOrConfirmed = await ConfirmResetPasswordUsecase(
             repository: PasswordRepositoryImpl(
-                networkInfo: NetworkInfoImpl(Connectivity()),
+                networkInfo:
+                    NetworkInfoImpl(InternetConnectionChecker.instance),
                 remoteDataSource:
                     PasswordRemoteDataSource(api: DioConsumer(dio: Dio()))))
         .call(params: params);
@@ -53,7 +54,8 @@ class PasswordCubit extends Cubit<PasswordStates> {
   Future<void> setNewPassword(NewPasswordParams params) async {
     final failureOrSetNew = await SetNewPasswordUsecase(
             repository: PasswordRepositoryImpl(
-                networkInfo: NetworkInfoImpl(Connectivity()),
+                networkInfo:
+                    NetworkInfoImpl(InternetConnectionChecker.instance),
                 remoteDataSource:
                     PasswordRemoteDataSource(api: DioConsumer(dio: Dio()))))
         .call(params: params);
@@ -69,7 +71,8 @@ class PasswordCubit extends Cubit<PasswordStates> {
 
     final failureOrNewPass = await ResetPasswordByPasswordUsecase(
             repository: PasswordRepositoryImpl(
-                networkInfo: NetworkInfoImpl(Connectivity()),
+                networkInfo:
+                    NetworkInfoImpl(InternetConnectionChecker.instance),
                 remoteDataSource:
                     PasswordRemoteDataSource(api: DioConsumer(dio: Dio()))))
         .call(params: params);

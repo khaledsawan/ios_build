@@ -8,7 +8,7 @@ import 'package:glowguide/features/notifications/data/source/notifications_remot
 import 'package:glowguide/features/notifications/domain/usecase/get_notifications_usecase.dart';
 import 'package:glowguide/features/notifications/domain/usecase/post_notification.dart';
 import 'package:glowguide/features/notifications/presentation/cubit/notifications_states.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
 
     final failureOrGetNotifications = await GetNotificationsUsecase(
       repository: NotificationsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(Connectivity()),
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
         remoteDataSource: NotificationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
@@ -39,18 +39,17 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
   }
 
   Future<void> postANewNotification(String content, String recipientId) async {
-    final failureOrPostedNotification =
-        await PostNotification(
-          repository: NotificationsRepositoryImpl(
-            networkInfo: NetworkInfoImpl(Connectivity()),
-            remoteDataSource: NotificationsRemoteDataSource(
-              api: DioConsumer(dio: Dio()),
-            ),
-            localDataSource: NotificationsLocalDataSource(cache: CacheHelper()),
-          ),
-        ).call(
-          params: NotificationParams(recipient: recipientId, content: content),
-        );
+    final failureOrPostedNotification = await PostNotification(
+      repository: NotificationsRepositoryImpl(
+        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        remoteDataSource: NotificationsRemoteDataSource(
+          api: DioConsumer(dio: Dio()),
+        ),
+        localDataSource: NotificationsLocalDataSource(cache: CacheHelper()),
+      ),
+    ).call(
+      params: NotificationParams(recipient: recipientId, content: content),
+    );
 
     failureOrPostedNotification.fold(
       (failure) => emit(
