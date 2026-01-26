@@ -2,6 +2,7 @@ import 'package:glowguide/core/connections/network_info.dart';
 import 'package:glowguide/core/databases/api/dio_consumer.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/offers/data/repository/offers_repository_impl.dart';
 import 'package:glowguide/features/offers/data/source/offers_local_data_source.dart';
 import 'package:glowguide/features/offers/data/source/offers_remote_data_source.dart';
@@ -9,7 +10,6 @@ import 'package:glowguide/features/offers/domain/usecases/admin_approve_reject_o
 import 'package:glowguide/features/offers/domain/usecases/create_new_offer_usecase.dart';
 import 'package:glowguide/features/offers/domain/usecases/get_all_offers_usecase.dart';
 import 'package:glowguide/features/offers/presentation/cubit/offer_states.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +21,7 @@ class OffersCubit extends Cubit<OfferStates> {
 
     final failureOrCreatedOffer = await CreateNewOfferUsecase(
       repository: OffersRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: OffersRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: OffersLocalDataSource(cache: CacheHelper()),
       ),
@@ -38,7 +38,7 @@ class OffersCubit extends Cubit<OfferStates> {
 
     final failureOrGetOffers = await GetAllOffersUsecase(
       repository: OffersRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: OffersRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: OffersLocalDataSource(cache: CacheHelper()),
       ),
@@ -61,7 +61,7 @@ class OffersCubit extends Cubit<OfferStates> {
 
     final failureOrApprovedRejected = await AdminApproveRejectOffersUsecase(
       repository: OffersRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: OffersRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: OffersLocalDataSource(cache: CacheHelper()),
       ),

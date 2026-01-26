@@ -3,6 +3,7 @@ import 'package:glowguide/core/databases/api/dio_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/locations/data/repository/locations_repository_impl.dart';
 import 'package:glowguide/features/locations/data/source/locations_local_data_source.dart';
 import 'package:glowguide/features/locations/data/source/locations_remote_data_source.dart';
@@ -10,7 +11,6 @@ import 'package:glowguide/features/locations/domain/usecases/add_new_location_us
 import 'package:glowguide/features/locations/domain/usecases/delete_location_usecase.dart';
 import 'package:glowguide/features/locations/domain/usecases/get_all_locations_usecase.dart';
 import 'package:glowguide/features/locations/presentation/cubit/locations_states.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +22,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
 
     final failureOrLocations = await GetAllLocationsUsecase(
       repository: LocationsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: LocationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
@@ -54,8 +54,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
 
     final failureOrAdded = await AddNewLocationUsecase(
             repository: LocationsRepositoryImpl(
-                networkInfo:
-                    NetworkInfoImpl(InternetConnectionChecker.instance),
+                networkInfo: sl<NetworkInfo>(),
                 remoteDataSource:
                     LocationsRemoteDataSource(api: DioConsumer(dio: Dio())),
                 localDataSource:
@@ -72,8 +71,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
 
     final failureOrDeleted = await DeleteLocationUsecase(
             repository: LocationsRepositoryImpl(
-                networkInfo:
-                    NetworkInfoImpl(InternetConnectionChecker.instance),
+                networkInfo: sl<NetworkInfo>(),
                 remoteDataSource:
                     LocationsRemoteDataSource(api: DioConsumer(dio: Dio())),
                 localDataSource:

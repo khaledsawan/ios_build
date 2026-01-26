@@ -2,13 +2,13 @@ import 'package:glowguide/core/connections/network_info.dart';
 import 'package:glowguide/core/databases/api/dio_consumer.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/notifications/data/repos/notifications_repository_impl.dart';
 import 'package:glowguide/features/notifications/data/source/notifications_local_data_source.dart';
 import 'package:glowguide/features/notifications/data/source/notifications_remote_data_source.dart';
 import 'package:glowguide/features/notifications/domain/usecase/get_notifications_usecase.dart';
 import 'package:glowguide/features/notifications/domain/usecase/post_notification.dart';
 import 'package:glowguide/features/notifications/presentation/cubit/notifications_states.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
 
     final failureOrGetNotifications = await GetNotificationsUsecase(
       repository: NotificationsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: NotificationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
@@ -41,7 +41,7 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
   Future<void> postANewNotification(String content, String recipientId) async {
     final failureOrPostedNotification = await PostNotification(
       repository: NotificationsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: NotificationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),

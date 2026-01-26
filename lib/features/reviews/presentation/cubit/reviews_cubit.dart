@@ -2,6 +2,7 @@ import 'package:glowguide/core/connections/network_info.dart';
 import 'package:glowguide/core/databases/api/dio_consumer.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/reviews/data/repos/reviews_repository_impl.dart';
 import 'package:glowguide/features/reviews/data/source/reviews_local_data_source.dart';
 import 'package:glowguide/features/reviews/data/source/reviews_remote_data_source.dart';
@@ -9,7 +10,6 @@ import 'package:glowguide/features/reviews/domain/usecase/admin_approve_reject_r
 import 'package:glowguide/features/reviews/domain/usecase/get_all_reviews_usecase.dart';
 import 'package:glowguide/features/reviews/domain/usecase/write_a_review_usecase.dart';
 import 'package:glowguide/features/reviews/presentation/cubit/reviews_states.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +21,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
 
     final failureOrGetReviews = await GetAllReviewsUsecase(
       repository: ReviewsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
       ),
@@ -38,7 +38,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
 
     final failureOrWriteReview = await WriteAReviewUsecase(
       repository: ReviewsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
       ),
@@ -57,7 +57,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
 
     final response = await AdminApproveRejectReviewUsecase(
       repository: ReviewsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
       ),

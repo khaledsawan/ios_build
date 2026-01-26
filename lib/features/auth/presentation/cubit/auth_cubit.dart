@@ -3,6 +3,7 @@ import 'package:glowguide/core/databases/api/dio_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/auth/data/repos/auth_repository_impl.dart';
 import 'package:glowguide/features/auth/data/source/auth_remote_data_source.dart';
 import 'package:glowguide/features/auth/domain/usecases/login_user_usecase.dart';
@@ -10,7 +11,6 @@ import 'package:glowguide/features/auth/domain/usecases/sign_up_clinic_owner_use
 import 'package:glowguide/features/auth/presentation/cubit/auth_states.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitial());
@@ -20,7 +20,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
     final failureOrLoggedInUser = await LoginUserUsecase(
       repository: AuthRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: AuthRemoteDataSource(api: DioConsumer(dio: Dio())),
       ),
     ).call(params: params);
@@ -70,7 +70,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
     final failureOrSignupClinicOwner = await SignUpClinicOwnerUsecase(
       repository: AuthRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: AuthRemoteDataSource(api: DioConsumer(dio: Dio())),
       ),
     ).call(params: params);

@@ -2,6 +2,7 @@ import 'package:glowguide/core/connections/network_info.dart';
 import 'package:glowguide/core/databases/api/dio_consumer.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/clinics/data/repos/clinics_repository_impl.dart';
 import 'package:glowguide/features/clinics/data/source/clinics_local_data_source.dart';
 import 'package:glowguide/features/clinics/data/source/clinics_remote_data_source.dart';
@@ -9,7 +10,6 @@ import 'package:glowguide/features/clinics/domain/usecases/admin_approve_reject_
 import 'package:glowguide/features/clinics/domain/usecases/create_new_clinic_usecase.dart';
 import 'package:glowguide/features/clinics/domain/usecases/get_all_clinics_usecase.dart';
 import 'package:glowguide/features/clinics/presentation/cubit/clinics_state.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +21,7 @@ class ClinicsCubit extends Cubit<ClinicsState> {
 
     final failureOrGetClinics = await GetAllClinicsUsecase(
       repository: ClinicsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ClinicsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ClinicsLocalDataSource(cache: CacheHelper()),
       ),
@@ -42,7 +42,7 @@ class ClinicsCubit extends Cubit<ClinicsState> {
 
     final failureOrClinicCreated = await CreateNewClinicUsecase(
       repository: ClinicsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ClinicsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ClinicsLocalDataSource(cache: CacheHelper()),
       ),
@@ -61,7 +61,7 @@ class ClinicsCubit extends Cubit<ClinicsState> {
 
     final failureOrSuccess = await AdminApproveRejectClinicUsecase(
       repository: ClinicsRepositoryImpl(
-        networkInfo: NetworkInfoImpl(InternetConnectionChecker.instance),
+        networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ClinicsRemoteDataSource(api: DioConsumer(dio: Dio())),
         localDataSource: ClinicsLocalDataSource(cache: CacheHelper()),
       ),
