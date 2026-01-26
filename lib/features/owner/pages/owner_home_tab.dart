@@ -124,7 +124,12 @@ class _OwnerHomeTabState extends State<OwnerHomeTab> {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text("My Clinics", style: AppTextStyles.paragraph02SemiBold),
         ),
-        BlocBuilder<ClinicsCubit, ClinicsState>(
+        BlocConsumer<ClinicsCubit, ClinicsState>(
+          listener: (context, state) {
+            if (state is ClinicsInitial) {
+              context.read<ClinicsCubit>().getAllClinics();
+            }
+          },
           builder: (context, state) {
             if (state is GetClinicsLoading) {
               return const SizedBox(

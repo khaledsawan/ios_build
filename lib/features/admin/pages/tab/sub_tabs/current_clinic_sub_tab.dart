@@ -12,7 +12,12 @@ class CurrentClinicSubTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClinicsCubit, ClinicsState>(
+    return BlocConsumer<ClinicsCubit, ClinicsState>(
+      listener: (context, state) {
+        if (state is ClinicsInitial) {
+          context.read<ClinicsCubit>().getAllClinics();
+        }
+      },
       builder: (context, state) {
         if (state is GetClinicsLoading) {
           return const Center(child: CircularProgressIndicator());

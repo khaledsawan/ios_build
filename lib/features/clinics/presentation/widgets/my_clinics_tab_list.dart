@@ -10,8 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyClinicsTabList extends StatelessWidget {
+class MyClinicsTabList extends StatefulWidget {
   const MyClinicsTabList({super.key});
+
+  @override
+  State<MyClinicsTabList> createState() => _MyClinicsTabListState();
+}
+
+class _MyClinicsTabListState extends State<MyClinicsTabList> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ClinicsCubit>().getAllClinics();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +158,6 @@ class MyClinicsTabList extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-
                   Text(
                     clinic.clinicName,
                     style: AppTextStyles.paragraph01SemiBold.copyWith(
@@ -155,13 +165,11 @@ class MyClinicsTabList extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-
                   Text(
                     clinic.clinicDescription,
                     style: AppTextStyles.captionRegular.copyWith(fontSize: 12),
                   ),
                   const SizedBox(height: 4),
-
                   Row(
                     children: [
                       const Icon(
@@ -270,8 +278,8 @@ class MyClinicsTabList extends StatelessWidget {
                                               style: AppTextStyles
                                                   .paragraph02Regular
                                                   .copyWith(
-                                                    color: Colors.white,
-                                                  ),
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -303,8 +311,8 @@ class MyClinicsTabList extends StatelessWidget {
                                               style: AppTextStyles
                                                   .paragraph02Regular
                                                   .copyWith(
-                                                    color: AppColors.primary05,
-                                                  ),
+                                                color: AppColors.primary05,
+                                              ),
                                             ),
                                           ),
                                         ),

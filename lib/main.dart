@@ -28,7 +28,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
-        BlocProvider(create: (context) => ClinicsCubit()..getAllClinics()),
+        BlocProvider(create: (context) => ClinicsCubit()),
         BlocProvider(
           create: (context) => AccountDetailsCubit()..fetchAccountDetails(),
         ),
