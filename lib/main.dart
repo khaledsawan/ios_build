@@ -1,5 +1,6 @@
 import 'package:glowguide/app_start_up.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/core/themes/app_theme.dart';
 import 'package:glowguide/core/widgets/custom_scaffold_messenger.dart';
 import 'package:glowguide/features/auth/presentation/cubit/auth_cubit.dart';
@@ -20,6 +21,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
   await Hive.initFlutter();
+
+  await init();
 
   Hive.registerAdapter(ClinicHiveModelAdapter());
   await Hive.openBox<ClinicHiveModel>('favoriteClinics');
