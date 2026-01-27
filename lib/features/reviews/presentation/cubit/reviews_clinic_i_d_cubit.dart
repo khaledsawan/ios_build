@@ -23,7 +23,7 @@ class ReviewsClinicIDCubit extends Cubit<ReviewsClinicIDStates> {
       repository: ReviewsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ReviewsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 

@@ -23,7 +23,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
       repository: ReviewsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ReviewsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call();
 
@@ -40,7 +40,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
       repository: ReviewsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ReviewsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 
@@ -59,7 +59,7 @@ class ReviewsCubit extends Cubit<ReviewsStates> {
       repository: ReviewsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ReviewsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ReviewsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ReviewsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 

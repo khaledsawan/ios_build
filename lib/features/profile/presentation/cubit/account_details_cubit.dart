@@ -24,7 +24,8 @@ class AccountDetailsCubit extends Cubit<AccountDetailsStates> {
         remoteDataSource: AccountDetailsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
-        localDataSource: AccountDetailsLocalDataSource(cache: CacheHelper()),
+        localDataSource:
+            AccountDetailsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call();
 
@@ -44,7 +45,7 @@ class AccountDetailsCubit extends Cubit<AccountDetailsStates> {
                 remoteDataSource: AccountDetailsRemoteDataSource(
                     api: DioConsumer(dio: Dio())),
                 localDataSource:
-                    AccountDetailsLocalDataSource(cache: CacheHelper())))
+                    AccountDetailsLocalDataSource(cache: getIt<CacheHelper>())))
         .call(params: params!);
 
     failureOrUpdated.fold(

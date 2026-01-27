@@ -26,7 +26,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
         remoteDataSource: LocationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
-        localDataSource: LocationsLocalDataSource(cache: CacheHelper()),
+        localDataSource: LocationsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call();
 
@@ -58,7 +58,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
                 remoteDataSource:
                     LocationsRemoteDataSource(api: DioConsumer(dio: Dio())),
                 localDataSource:
-                    LocationsLocalDataSource(cache: CacheHelper())))
+                    LocationsLocalDataSource(cache: getIt<CacheHelper>())))
         .call(params: params);
 
     failureOrAdded.fold(
@@ -75,7 +75,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
                 remoteDataSource:
                     LocationsRemoteDataSource(api: DioConsumer(dio: Dio())),
                 localDataSource:
-                    LocationsLocalDataSource(cache: CacheHelper())))
+                    LocationsLocalDataSource(cache: getIt<CacheHelper>())))
         .call(params: params);
 
     failureOrDeleted.fold(

@@ -23,7 +23,7 @@ class OffersCubit extends Cubit<OfferStates> {
       repository: OffersRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: OffersRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: OffersLocalDataSource(cache: CacheHelper()),
+        localDataSource: OffersLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 
@@ -40,7 +40,7 @@ class OffersCubit extends Cubit<OfferStates> {
       repository: OffersRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: OffersRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: OffersLocalDataSource(cache: CacheHelper()),
+        localDataSource: OffersLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call();
 
@@ -63,7 +63,7 @@ class OffersCubit extends Cubit<OfferStates> {
       repository: OffersRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: OffersRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: OffersLocalDataSource(cache: CacheHelper()),
+        localDataSource: OffersLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 

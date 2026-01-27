@@ -20,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
-  await init();
+  await setupServiceLocator();
 
   Hive.registerAdapter(ClinicHiveModelAdapter());
   await Hive.openBox<ClinicHiveModel>('favoriteClinics');

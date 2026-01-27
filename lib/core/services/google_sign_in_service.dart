@@ -66,12 +66,12 @@ class GoogleAuthRepository {
     await sl<CacheHelper>().saveData(key: ApiKey.refresh, value: refreshToken);
     await sl<CacheHelper>().saveData(key: ApiKey.userID, value: user['id']);
     await sl<CacheHelper>().saveData(key: ApiKey.type, value: "U");
-    await CacheHelper()
+    await sl<CacheHelper>()
         .saveData(key: ApiKey.userFullName, value: user['fullname']);
     await sl<CacheHelper>()
         .saveData(key: ApiKey.userEmail, value: user['email']);
     if (user['profile_pic'] != null) {
-      await CacheHelper()
+      await sl<CacheHelper>()
           .saveData(key: ApiKey.userProfileImage, value: user['profile_pic']);
     }
 

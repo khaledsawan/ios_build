@@ -84,8 +84,8 @@ BlocConsumer<ReviewsCubit, ReviewsStates> _content({
                 onPressed: isLoading
                     ? null
                     : () {
-                        final String? selectedRatingStr =
-                            CacheHelper().getDataString(key: "SelectedRating");
+                        final String? selectedRatingStr = getIt<CacheHelper>()
+                            .getDataString(key: "SelectedRating");
 
                         final int rating =
                             int.tryParse(selectedRatingStr ?? '') ?? 0;

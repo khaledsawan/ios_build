@@ -6,6 +6,7 @@ import 'features/clinics/presentation/cubit/clinics_cubit.dart';
 import 'features/offers/presentation/cubit/offers_cubit.dart';
 import 'features/locations/presentation/cubit/locations_cubit.dart';
 import 'core/layouts/auth_layout.dart';
+import 'core/databases/cache/cache_helper.dart';
 
 class AppStartup extends StatefulWidget {
   const AppStartup({super.key});
@@ -20,12 +21,20 @@ class _AppStartupState extends State<AppStartup> {
     super.initState();
 
     /// 🔑 هنا الحل
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ClinicsCubit>().getAllClinics();
-      context.read<OffersCubit>().getAllOfferss();
-      context.read<LocationsCubit>().getAllLocations();
-      context.read<AccountDetailsCubit>().fetchAccountDetails();
-      context.read<ReviewsCubit>().getAllReviews();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      try {
+        await CacheHelper.instance.init();
+      } catch (e) {
+        // Handle initialization error if needed
+        debugPrint('CacheHelper init error: $e');
+      }
+      if (mounted) {
+        context.read<ClinicsCubit>().getAllClinics();
+        context.read<OffersCubit>().getAllOfferss();
+        context.read<LocationsCubit>().getAllLocations();
+        context.read<AccountDetailsCubit>().fetchAccountDetails();
+        context.read<ReviewsCubit>().getAllReviews();
+      }
     });
   }
 

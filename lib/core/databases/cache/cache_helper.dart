@@ -1,65 +1,83 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
-  static late SharedPreferences sharedPreferences;
+  static CacheHelper? _instance;
+  static late SharedPreferences _sharedPreferences;
+  static bool _isInitialized = false;
+
+  CacheHelper._();
+
+  static CacheHelper get instance {
+    _instance ??= CacheHelper._();
+    return _instance!;
+  }
 
   Future<void> init() async {
-    sharedPreferences = await SharedPreferences.getInstance();
+    if (_isInitialized) return;
+    _sharedPreferences = await SharedPreferences.getInstance();
+    _isInitialized = true;
   }
 
   String? getDataString({required String key}) {
-    return sharedPreferences.getString(key);
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
+    return _sharedPreferences.getString(key);
   }
 
   Future<bool> saveData({required String key, required dynamic value}) async {
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
     if (value == null) {
       // احذف المفتاح إذا القيمة null
-      return await sharedPreferences.remove(key);
+      return await _sharedPreferences.remove(key);
     }
 
     if (value is bool) {
-      return await sharedPreferences.setBool(key, value);
+      return await _sharedPreferences.setBool(key, value);
     }
 
     if (value is String) {
-      return await sharedPreferences.setString(key, value);
+      return await _sharedPreferences.setString(key, value);
     }
 
     if (value is int) {
-      return await sharedPreferences.setInt(key, value);
+      return await _sharedPreferences.setInt(key, value);
     }
 
     if (value is double) {
-      return await sharedPreferences.setDouble(key, value);
+      return await _sharedPreferences.setDouble(key, value);
     }
 
     // أي نوع آخر (مثل Map, List …)
-    return await sharedPreferences.setString(key, value.toString());
+    return await _sharedPreferences.setString(key, value.toString());
   }
 
   dynamic getData({required String key}) {
-    return sharedPreferences.get(key);
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
+    return _sharedPreferences.get(key);
   }
 
   Future<bool> removeData({required String key}) async {
-    return await sharedPreferences.remove(key);
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
+    return _sharedPreferences.remove(key);
   }
 
   Future<bool> containsKey({required String key}) async {
-    return sharedPreferences.containsKey(key);
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
+    return _sharedPreferences.containsKey(key);
   }
 
   Future<bool> clearData() async {
-    return await sharedPreferences.clear();
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
+    return await _sharedPreferences.clear();
   }
 
   Future<dynamic> put({required String key, required dynamic value}) async {
+    if (!_isInitialized) throw Exception('CacheHelper not initialized');
     if (value is String) {
-      return await sharedPreferences.setString(key, value);
+      return await _sharedPreferences.setString(key, value);
     } else if (value is bool) {
-      return await sharedPreferences.setBool(key, value);
+      return await _sharedPreferences.setBool(key, value);
     } else {
-      return await sharedPreferences.setInt(key, value);
+      return await _sharedPreferences.setInt(key, value);
     }
   }
 }

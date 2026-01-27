@@ -24,7 +24,8 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
         remoteDataSource: NotificationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
-        localDataSource: NotificationsLocalDataSource(cache: CacheHelper()),
+        localDataSource:
+            NotificationsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call();
 
@@ -45,7 +46,8 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
         remoteDataSource: NotificationsRemoteDataSource(
           api: DioConsumer(dio: Dio()),
         ),
-        localDataSource: NotificationsLocalDataSource(cache: CacheHelper()),
+        localDataSource:
+            NotificationsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(
       params: NotificationParams(recipient: recipientId, content: content),

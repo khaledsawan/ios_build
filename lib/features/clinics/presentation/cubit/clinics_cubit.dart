@@ -23,7 +23,7 @@ class ClinicsCubit extends Cubit<ClinicsState> {
       repository: ClinicsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ClinicsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ClinicsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ClinicsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call();
 
@@ -44,7 +44,7 @@ class ClinicsCubit extends Cubit<ClinicsState> {
       repository: ClinicsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ClinicsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ClinicsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ClinicsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 
@@ -63,7 +63,7 @@ class ClinicsCubit extends Cubit<ClinicsState> {
       repository: ClinicsRepositoryImpl(
         networkInfo: sl<NetworkInfo>(),
         remoteDataSource: ClinicsRemoteDataSource(api: DioConsumer(dio: Dio())),
-        localDataSource: ClinicsLocalDataSource(cache: CacheHelper()),
+        localDataSource: ClinicsLocalDataSource(cache: getIt<CacheHelper>()),
       ),
     ).call(params: params);
 
