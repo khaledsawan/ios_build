@@ -44,14 +44,14 @@ class _MyClinicsTabListState extends State<MyClinicsTabList> {
 
   Widget _buildContent(BuildContext context, ClinicsState state) {
     if (state is GetClinicsLoading) {
-      return SizedBox(
+      return const SizedBox(
         height: 130,
-        child: const Center(child: CircularProgressIndicator()),
+        child: Center(child: CircularProgressIndicator()),
       );
     }
 
     if (state is GetClinicsFailed) {
-      return SizedBox(
+      return const SizedBox(
         height: 130,
         child: Center(
           child: Text(
@@ -66,7 +66,7 @@ class _MyClinicsTabListState extends State<MyClinicsTabList> {
       final clinics = state.clinics;
 
       if (clinics.isEmpty) {
-        return SizedBox(
+        return const SizedBox(
           height: 130,
           child: Center(child: Text("You don't have any clinics yet!")),
         );
@@ -83,9 +83,9 @@ class _MyClinicsTabListState extends State<MyClinicsTabList> {
       );
     }
 
-    return SizedBox(
+    return const SizedBox(
       height: 130,
-      child: const Center(child: Text("An unexpected error occurred")),
+      child: Center(child: Text("An unexpected error occurred")),
     );
   }
 
@@ -238,7 +238,7 @@ class _MyClinicsTabListState extends State<MyClinicsTabList> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
+                                const Text(
                                   "Delete Confirmation",
                                   style: AppTextStyles.paragraph01SemiBold,
                                 ),

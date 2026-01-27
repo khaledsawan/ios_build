@@ -40,7 +40,7 @@ class LocationsCubit extends Cubit<LocationsStates> {
         if (defaultList.isNotEmpty) {
           final defaultLocation = defaultList.first;
 
-          await CacheHelper().saveData(
+          await sl<CacheHelper>().saveData(
             key: ApiKey.mainLocation,
             value: defaultLocation.address,
           );

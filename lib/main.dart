@@ -1,5 +1,4 @@
 import 'package:glowguide/app_start_up.dart';
-import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/core/themes/app_theme.dart';
 import 'package:glowguide/core/widgets/custom_scaffold_messenger.dart';
@@ -19,7 +18,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CacheHelper().init();
   await Hive.initFlutter();
 
   await init();

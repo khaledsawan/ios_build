@@ -65,7 +65,7 @@ class AdminPanel extends StatelessWidget {
                         ),
                         SizedBox(height: 16.h),
 
-                        Expanded(
+                        const Expanded(
                           child: TabBarView(
                             children: [
                               AdminClinicsTab(),
@@ -94,7 +94,7 @@ class AdminPanel extends StatelessWidget {
           children: [
             Image.asset(AppAssets.logo, width: 32.w, height: 32.w),
             SizedBox(width: 8.w),
-            Text("GlowGuide", style: AppTextStyles.paragraph02SemiBold),
+            const Text("GlowGuide", style: AppTextStyles.paragraph02SemiBold),
           ],
         ),
         Row(
@@ -110,8 +110,8 @@ class AdminPanel extends StatelessWidget {
               },
               icon: Icon(Icons.notifications_outlined, size: 32.r),
             ),
-            SizedBox(width: 4),
-            SignOutButton(),
+            const SizedBox(width: 4),
+            const SignOutButton(),
           ],
         ),
       ],

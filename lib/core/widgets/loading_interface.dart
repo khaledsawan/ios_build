@@ -17,8 +17,8 @@ class LoadingInterface extends StatelessWidget {
             height: 250,
             width: 250,
           ),
-          SizedBox(height: 50),
-          CircularProgressIndicator(),
+          const SizedBox(height: 50),
+          const CircularProgressIndicator(),
         ],
       ),
     );

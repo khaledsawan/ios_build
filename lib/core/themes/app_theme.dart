@@ -13,7 +13,7 @@ final appTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primary05,
       foregroundColor: Colors.white,
-      minimumSize: Size.fromHeight(48),
+      minimumSize: const Size.fromHeight(48),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 2,

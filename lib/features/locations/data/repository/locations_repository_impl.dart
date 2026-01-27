@@ -49,7 +49,7 @@ class LocationsRepositoryImpl extends LocationsRepository {
       try {
         await remoteDataSource.addNewLocation(params);
 
-        return Right(null);
+        return const Right(null);
       } on ServerException catch (e) {
         return Left(Failure(errMessage: e.errorModel.errorMessage));
       }
@@ -65,7 +65,7 @@ class LocationsRepositoryImpl extends LocationsRepository {
       try {
         await remoteDataSource.deleteLocation(params);
 
-        return Right(null);
+        return const Right(null);
       } on ServerException catch (e) {
         return Left(Failure(errMessage: e.errorModel.errorMessage));
       }

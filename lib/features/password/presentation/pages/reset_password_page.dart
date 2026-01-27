@@ -49,7 +49,7 @@ class ResetPasswordPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Reset Your Password",
+                const Text("Reset Your Password",
                     style: AppTextStyles.heading01SemiBold),
                 SizedBox(height: 20.h),
                 CustomInputField(

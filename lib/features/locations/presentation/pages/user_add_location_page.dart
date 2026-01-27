@@ -101,13 +101,13 @@ class _UserAddLocationPageState extends State<UserAddLocationPage> {
                     validator: (v) =>
                         v == null || v.isEmpty ? "Floor is required" : null,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Set as Default",
                         style: TextStyle(
                           fontSize: 16,

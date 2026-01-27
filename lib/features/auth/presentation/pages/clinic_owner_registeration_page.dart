@@ -114,7 +114,7 @@ class _ClinicOwnerRegistrationPageState
         if (state is SignupUserSuccess) {
           CustomScaffoldMessenger().showSuccess(
             "Account created successfully!\nYou can login to your account.",
-            duration: Duration(seconds: 5),
+            duration: const Duration(seconds: 5),
           );
           Navigator.pushAndRemoveUntil(
             context,
@@ -133,7 +133,7 @@ class _ClinicOwnerRegistrationPageState
         return CustomScaffold(
           safeTop: false,
           children: [
-            Text(
+            const Text(
               "Welcome to glowguide  🎉",
               style: AppTextStyles.heading01SemiBold,
             ),

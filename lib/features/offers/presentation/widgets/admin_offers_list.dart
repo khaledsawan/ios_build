@@ -105,7 +105,7 @@ class AdminOffersList extends StatelessWidget {
                               ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       top: 16,
                       left: 16,
                       child: SizedBox(

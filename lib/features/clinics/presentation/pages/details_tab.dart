@@ -32,7 +32,7 @@ class DetailsTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Who are we !?", style: AppTextStyles.paragraph01SemiBold),
+            const Text("Who are we !?", style: AppTextStyles.paragraph01SemiBold),
             SizedBox(height: 8.h),
             Text(
               clinic.clinicWhoAreWe,
@@ -41,7 +41,7 @@ class DetailsTab extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            Text("What we provide !", style: AppTextStyles.paragraph01SemiBold),
+            const Text("What we provide !", style: AppTextStyles.paragraph01SemiBold),
             SizedBox(height: 8.h),
             Wrap(
               spacing: 8.w,

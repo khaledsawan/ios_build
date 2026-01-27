@@ -91,24 +91,24 @@ class _CreateOfferPageState extends State<CreateOfferPage> {
         return CustomScaffold(
           safeTop: false,
           children: [
-            SizedBox(height: 20),
-            Text("Create New Offer", style: AppTextStyles.heading02ExtraBold),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            const Text("Create New Offer", style: AppTextStyles.heading02ExtraBold),
+            const SizedBox(height: 20),
 
             AddImageWidget(
               title: "Offer Banner",
               selectedImage: _offerBanner,
               onPressed: _offerBanner == null ? _pickOfferBanner : null,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             DateInputField(
               controller: _startDateController,
               label: "Start Date",
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             DateInputField(controller: _endDateController, label: "End Date"),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             Categories(
               onSelected: (codes) {
@@ -116,7 +116,7 @@ class _CreateOfferPageState extends State<CreateOfferPage> {
               },
             ),
 
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
             ElevatedButton(
               onPressed: isLoading ? null : _submitOffer,

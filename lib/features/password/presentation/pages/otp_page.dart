@@ -61,10 +61,10 @@ class _OtpPageState extends State<OtpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Verify Your Email",
+                const Text("Verify Your Email",
                     style: AppTextStyles.heading01SemiBold),
                 SizedBox(height: 40.h),
-                Text("OTP Code", style: AppTextStyles.paragraph02Regular),
+                const Text("OTP Code", style: AppTextStyles.paragraph02Regular),
                 SizedBox(height: 8.h),
                 OtpForm(
                   onChanged: (value) {

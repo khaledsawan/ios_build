@@ -3,19 +3,20 @@ import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:glowguide/core/layouts/auth_layout.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 
 class SignOutButton extends StatelessWidget {
   const SignOutButton({super.key});
 
   Future<void> _logout(BuildContext context) async {
-    await CacheHelper().removeData(key: ApiKey.access);
-    await CacheHelper().removeData(key: ApiKey.refresh);
-    await CacheHelper().removeData(key: ApiKey.userID);
-    await CacheHelper().removeData(key: ApiKey.type);
+    await sl<CacheHelper>().removeData(key: ApiKey.access);
+    await sl<CacheHelper>().removeData(key: ApiKey.refresh);
+    await sl<CacheHelper>().removeData(key: ApiKey.userID);
+    await sl<CacheHelper>().removeData(key: ApiKey.type);
 
     if (context.mounted) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AuthLayout()));
+          context, MaterialPageRoute(builder: (context) => const AuthLayout()));
     }
   }
 

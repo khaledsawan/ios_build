@@ -3,6 +3,7 @@ import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/layouts/owner_tabs_layout.dart';
 import 'package:glowguide/core/layouts/user_tabs_layout.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/admin/pages/admin_panel.dart';
 import 'package:glowguide/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:glowguide/features/onboarding/pages/get_started_page.dart';
@@ -14,9 +15,9 @@ class AuthLayout extends StatelessWidget {
   final Widget? pageInNotConnected;
 
   Future<Map<String, dynamic>> _getInitialData() async {
-    final userType = await CacheHelper().getData(key: ApiKey.type);
+    final userType = await sl<CacheHelper>().getData(key: ApiKey.type);
     final isSeenOnboarding =
-        await CacheHelper().getData(key: "SeenOnboarding") ?? false;
+        await sl<CacheHelper>().getData(key: "SeenOnboarding") ?? false;
 
     return {
       'userType': userType,

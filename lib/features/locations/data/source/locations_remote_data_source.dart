@@ -2,6 +2,7 @@ import 'package:glowguide/core/databases/api/api_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/locations/data/models/locations_model.dart';
 import 'package:dio/dio.dart';
 
@@ -11,7 +12,7 @@ class LocationsRemoteDataSource {
   LocationsRemoteDataSource({required this.api});
 
   Future<List<LocationsModel>> getAllLocations() async {
-    final String accessKey = CacheHelper().getData(key: ApiKey.access);
+    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     final response = await api.get(
       EndPoints.getAllLocations,
@@ -24,7 +25,7 @@ class LocationsRemoteDataSource {
   }
 
   Future<void> addNewLocation(AddLocationParams params) async {
-    final String accessKey = CacheHelper().getData(key: ApiKey.access);
+    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
     await api.post(EndPoints.getAllLocations,
         options: Options(headers: {"Authorization": "Bearer $accessKey"}),
         data: {
@@ -38,7 +39,7 @@ class LocationsRemoteDataSource {
   }
 
   Future<void> deleteLocation(DeleteLocationParams params) async {
-    final String accessKey = CacheHelper().getData(key: ApiKey.access);
+    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     await api.delete("${EndPoints.getAllLocations}/${params.locationId}", null,
         options: Options(headers: {"Authorization": "Bearer $accessKey"}));

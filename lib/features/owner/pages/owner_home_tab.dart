@@ -68,7 +68,7 @@ class _OwnerHomeTabState extends State<OwnerHomeTab> {
             children: [
               Image.asset(AppAssets.logo, width: 32.w, height: 32.w),
               SizedBox(width: 8.w),
-              Text("GlowGuide", style: AppTextStyles.paragraph02SemiBold),
+              const Text("GlowGuide", style: AppTextStyles.paragraph02SemiBold),
             ],
           ),
           const NotificationsButton(),
@@ -122,7 +122,7 @@ class _OwnerHomeTabState extends State<OwnerHomeTab> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Text("My Clinics", style: AppTextStyles.paragraph02SemiBold),
+          child: const Text("My Clinics", style: AppTextStyles.paragraph02SemiBold),
         ),
         BlocConsumer<ClinicsCubit, ClinicsState>(
           listener: (context, state) {
@@ -163,7 +163,7 @@ class _OwnerHomeTabState extends State<OwnerHomeTab> {
               }
 
               if (clinics.isEmpty) {
-                return SizedBox(
+                return const SizedBox(
                   height: 130,
                   child: Center(child: Text("No clinics found")),
                 );
@@ -467,7 +467,7 @@ class _OwnerHomeTabState extends State<OwnerHomeTab> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Text(
+          child: const Text(
             "Recent Reviews From Others",
             style: AppTextStyles.paragraph02SemiBold,
           ),

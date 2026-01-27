@@ -20,7 +20,7 @@ class UserProfileAddressesPage extends StatelessWidget {
       body: BlocBuilder<LocationsCubit, LocationsStates>(
         builder: (context, state) {
           if (state is GetAllLocationsLoading) {
-            return Center(child: LoadingInterface());
+            return const Center(child: LoadingInterface());
           }
 
           if (state is GetAllLocationsFailed) {
@@ -31,7 +31,7 @@ class UserProfileAddressesPage extends StatelessWidget {
             final location = state.location;
 
             if (location.isEmpty) {
-              return Center(child: Text("No Locations Yet!"));
+              return const Center(child: Text("No Locations Yet!"));
             }
 
             return SafeArea(
@@ -49,15 +49,15 @@ class UserProfileAddressesPage extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("An Error Occured"),
-                SizedBox(
+                const Text("An Error Occured"),
+                const SizedBox(
                   height: 16,
                 ),
                 ElevatedButton(
                     onPressed: () {
                       context.read<LocationsCubit>().getAllLocations();
                     },
-                    child: Text("Reload"))
+                    child: const Text("Reload"))
               ],
             ));
           }
@@ -127,12 +127,12 @@ class UserProfileAddressesPage extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
+                            const Text(
                               "Delete Confirmation",
                               style: AppTextStyles.paragraph02SemiBold,
                             ),
                             SizedBox(height: 16.h),
-                            Text(
+                            const Text(
                               "Are you sure you want to delete this address?",
                               style: AppTextStyles.heading01SemiBold,
                             ),
@@ -233,7 +233,7 @@ class UserProfileAddressesPage extends StatelessWidget {
   AppBar _appBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-      title: Text("Adresses"),
+      title: const Text("Adresses"),
       actions: [
         GestureDetector(
           onTap: () {

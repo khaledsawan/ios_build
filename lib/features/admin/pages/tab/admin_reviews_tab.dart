@@ -11,9 +11,9 @@ class AdminReviewsTab extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Pending Reviews", style: AppTextStyles.paragraph01SemiBold),
+        const Text("Pending Reviews", style: AppTextStyles.paragraph01SemiBold),
         SizedBox(height: 16.h),
-        Expanded(child: AdminReviewsList()),
+        const Expanded(child: AdminReviewsList()),
       ],
     );
   }

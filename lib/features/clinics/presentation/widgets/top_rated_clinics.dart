@@ -90,7 +90,7 @@ class TopRatedClinics extends StatelessWidget {
           }
 
           if (clinics.isEmpty) {
-            return SizedBox(
+            return const SizedBox(
               height: 130,
               child: Center(child: Text("No clinics found.")),
             );
@@ -170,7 +170,7 @@ class TopRatedClinics extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 7.5),
+                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 7.5),
                     decoration: BoxDecoration(
                       color: AppColors.secondary01,
                       borderRadius: BorderRadius.circular(1000),
@@ -179,12 +179,12 @@ class TopRatedClinics extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star_rounded,
                           size: 16,
                           color: AppColors.secondary04,
                         ),
-                        SizedBox(width: 3),
+                        const SizedBox(width: 3),
                         Text(
                           "${clinic.clinicAverageRating} ( ${clinic.clinicRatingCount} Reviews )",
                           style: AppTextStyles.footerRegular,

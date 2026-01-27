@@ -21,11 +21,11 @@ class PendingClinicsSubTab extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is GetClinicsLoading) {
-          return Column(
+          return const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 100),
-              const Center(child: CircularProgressIndicator()),
+              Center(child: CircularProgressIndicator()),
             ],
           );
         }
@@ -264,17 +264,17 @@ class PendingClinicsSubTab extends StatelessWidget {
         return Center(
           child: Column(
             children: [
-              Text(
+              const Text(
                 "An error occurred",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: AppColors.error12),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   context.read<ClinicsCubit>().getAllClinics();
                 },
-                child: Text("Rerty"),
+                child: const Text("Rerty"),
               ),
             ],
           ),

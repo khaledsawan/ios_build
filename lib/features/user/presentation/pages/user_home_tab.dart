@@ -66,7 +66,7 @@ class _UserHomeTabState extends State<UserHomeTab> {
                   SizedBox(height: 8.h),
                   const UserMainLocation(),
                   SizedBox(height: 16.h),
-                  StackCarousel(),
+                  const StackCarousel(),
                   SizedBox(height: 24.h),
                   CategorySelector(
                     categories: allCategories,
@@ -79,7 +79,7 @@ class _UserHomeTabState extends State<UserHomeTab> {
                   SizedBox(height: 24.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Text(
+                    child: const Text(
                       "Top Rated Clinics",
                       style: AppTextStyles.paragraph02SemiBold,
                     ),
@@ -107,7 +107,7 @@ class _UserHomeTabState extends State<UserHomeTab> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Text(
+          child: const Text(
             "Reviews From Others",
             style: AppTextStyles.paragraph02SemiBold,
           ),
@@ -190,7 +190,7 @@ class _UserHomeTabState extends State<UserHomeTab> {
             children: [
               Image.asset(AppAssets.logo, width: 32.w, height: 32.w),
               SizedBox(width: 8.w),
-              Text("GlowGuide", style: AppTextStyles.paragraph02SemiBold),
+              const Text("GlowGuide", style: AppTextStyles.paragraph02SemiBold),
             ],
           ),
           const NotificationsButton(),

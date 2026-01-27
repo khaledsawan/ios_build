@@ -69,7 +69,7 @@ class AdminReviewsList extends StatelessWidget {
               return Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 50.h),
-                  child: Text("No Pending Reviews Currently!"),
+                  child: const Text("No Pending Reviews Currently!"),
                 ),
               );
             }

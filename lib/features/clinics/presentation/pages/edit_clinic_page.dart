@@ -83,7 +83,7 @@ class EditClinicPage extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text("Edit Clinic", style: AppTextStyles.paragraph02SemiBold),
+      title: const Text("Edit Clinic", style: AppTextStyles.paragraph02SemiBold),
       actions: [
         GestureDetector(
           onTap: () {},
@@ -92,10 +92,10 @@ class EditClinicPage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.cancel_outlined,
                   size: 24,
-                  color: const Color(0xFFDD0011),
+                  color: Color(0xFFDD0011),
                 ),
                 SizedBox(width: 4.w),
                 Text(

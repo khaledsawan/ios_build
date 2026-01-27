@@ -16,7 +16,7 @@ class _UserOffersTabState extends State<UserOffersTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(children: [_appBar(context), UserOffersList()]),
+        child: Column(children: [_appBar(context), const UserOffersList()]),
       ),
     );
   }
@@ -24,11 +24,11 @@ class _UserOffersTabState extends State<UserOffersTab> {
   Padding _appBar(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 8.h, left: 16.w, right: 16.w),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Offers", style: AppTextStyles.heading01SemiBold),
-          const NotificationsButton(),
+          NotificationsButton(),
         ],
       ),
     );

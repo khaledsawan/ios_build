@@ -84,7 +84,7 @@ class FaqPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("FAQs", style: AppTextStyles.paragraph01SemiBold),
+        title: const Text("FAQs", style: AppTextStyles.paragraph01SemiBold),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

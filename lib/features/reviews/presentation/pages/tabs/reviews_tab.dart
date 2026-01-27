@@ -62,7 +62,7 @@ class _ReviewsTabState extends State<ReviewsTab> {
     return ListView(
       addAutomaticKeepAlives: false,
       addRepaintBoundaries: false,
-      padding: EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       children: [
         SizedBox(height: 20.h),
         WtireAReviewFavoriteButtons(clinic: widget.clinic),
@@ -100,11 +100,11 @@ class _ReviewsTabState extends State<ReviewsTab> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 10,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),

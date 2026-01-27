@@ -4,6 +4,7 @@ import 'package:glowguide/core/constants/app_text_styles.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/core/widgets/custom_input_field.dart';
 import 'package:glowguide/core/widgets/custom_scaffold_messenger.dart';
 import 'package:glowguide/features/auth/presentation/widgets/logout_button.dart';
@@ -110,7 +111,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
   }
 
   Column _accountSection(BuildContext context) {
-    final userType = CacheHelper().getData(key: ApiKey.type);
+    final userType = sl<CacheHelper>().getData(key: ApiKey.type);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -146,7 +147,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
           _changePassword(context);
         }),
         userType == "CO"
-            ? SizedBox()
+            ? const SizedBox()
             : _profileOption(context, Icons.map_outlined, "Addresses", () {
                 Navigator.push(
                   context,
@@ -189,7 +190,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Change Language",
                                 style: AppTextStyles.paragraph01SemiBold,
                               ),
@@ -315,7 +316,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Change Password",
+                            const Text("Change Password",
                                 style: AppTextStyles.paragraph01SemiBold),
                             GestureDetector(
                               onTap: () => Navigator.pop(context),
@@ -353,7 +354,8 @@ class _MyProfileTabState extends State<MyProfileTab> {
                             padding: EdgeInsets.only(top: 16.h),
                             child: Text(
                               errorMessage,
-                              style: TextStyle(color: Colors.red, fontSize: 14),
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 14),
                             ),
                           ),
                         SizedBox(height: 30.h),
@@ -427,7 +429,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
         }
 
         if (state is GetAccountDetailsLoading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (state is GetAccountDetailsSuccessfully) {
@@ -445,7 +447,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(Icons.check_circle, color: Colors.green),
+                          const Icon(Icons.check_circle, color: Colors.green),
                           SizedBox(width: 8.w),
                           Text(
                             state.accountDetails.approvedReviews.toString(),
@@ -454,7 +456,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                         ],
                       ),
                       SizedBox(height: 12.h),
-                      Text(
+                      const Text(
                         "Published Reviews",
                         style: AppTextStyles.paragraph02Regular,
                       ),
@@ -475,7 +477,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(Icons.cancel, color: Colors.red),
+                          const Icon(Icons.cancel, color: Colors.red),
                           SizedBox(width: 8.w),
                           Text(
                             state.accountDetails.rejectedReviews.toString(),
@@ -484,7 +486,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                         ],
                       ),
                       SizedBox(height: 12.h),
-                      Text(
+                      const Text(
                         "Refused Reviews",
                         style: AppTextStyles.paragraph02Regular,
                       ),
@@ -495,15 +497,16 @@ class _MyProfileTabState extends State<MyProfileTab> {
             ],
           );
         } else {
-          return Center(child: Text("An error occured"));
+          return const Center(child: Text("An error occured"));
         }
       },
     );
   }
 
   Row _welcomingText() {
-    final userFullName = CacheHelper().getData(key: ApiKey.userFullName);
-    final profileImage = CacheHelper().getData(key: ApiKey.userProfileImage);
+    final userFullName = sl<CacheHelper>().getData(key: ApiKey.userFullName);
+    final profileImage =
+        sl<CacheHelper>().getData(key: ApiKey.userProfileImage);
 
     return Row(
       children: [
@@ -522,7 +525,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
                 "Hello, $userFullName 👋🏻",
                 style: AppTextStyles.paragraph01SemiBold,
               ),
-              Text(
+              const Text(
                 "Take a look on your activity & history",
                 style: AppTextStyles.paragraph02Regular,
               ),
@@ -534,7 +537,7 @@ class _MyProfileTabState extends State<MyProfileTab> {
   }
 
   Row _appBar(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text("My Profile", style: AppTextStyles.heading01SemiBold),

@@ -97,7 +97,7 @@ class _UserRegisterationPageState extends State<UserRegisterationPage> {
         if (state is SignupUserSuccess) {
           CustomScaffoldMessenger().showSuccess(
             "Account created successfully!\nYou can login to your account.",
-            duration: Duration(seconds: 5),
+            duration: const Duration(seconds: 5),
           );
 
           Navigator.pushAndRemoveUntil(
@@ -117,7 +117,7 @@ class _UserRegisterationPageState extends State<UserRegisterationPage> {
         return CustomScaffold(
           safeTop: false,
           children: [
-            Text(
+            const Text(
               "Welcome to GlowGuide 🎉",
               style: AppTextStyles.heading01SemiBold,
             ),

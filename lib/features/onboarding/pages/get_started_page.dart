@@ -110,7 +110,7 @@ class _GetStartedPageState extends State<GetStartedPage>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Get Started 🚀",
                           style: AppTextStyles.heading01Bold,
                         ),

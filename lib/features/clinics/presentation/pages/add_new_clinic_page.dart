@@ -228,7 +228,7 @@ class _AddNewClinicPageState extends State<AddNewClinicPage> {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text("Add New Clinic", style: AppTextStyles.paragraph02SemiBold),
+      title: const Text("Add New Clinic", style: AppTextStyles.paragraph02SemiBold),
       actions: [
         GestureDetector(
           onTap: () {
@@ -239,7 +239,7 @@ class _AddNewClinicPageState extends State<AddNewClinicPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.close, size: 24, color: const Color(0xFFDD0011)),
+                const Icon(Icons.close, size: 24, color: Color(0xFFDD0011)),
                 SizedBox(width: 8.w),
                 Text(
                   "Cancel",

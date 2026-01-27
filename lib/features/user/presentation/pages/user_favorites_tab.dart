@@ -90,11 +90,11 @@ class UserFavoritesTab extends StatelessWidget {
   Padding _appBar(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 8.h, left: 16.w, right: 16.w),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Favorites", style: AppTextStyles.heading01SemiBold),
-          const NotificationsButton(),
+          NotificationsButton(),
         ],
       ),
     );
@@ -237,7 +237,7 @@ class _FavoriteClinicCardState extends State<FavoriteClinicCard>
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4)],
+          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4)],
         ),
         child: Row(
           children: [
@@ -309,7 +309,7 @@ class _FavoriteClinicCardState extends State<FavoriteClinicCard>
                   SizedBox(height: 4.h),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.location_pin,
                         size: 14,
                         color: AppColors.primary05,

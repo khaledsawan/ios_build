@@ -32,7 +32,7 @@ class ClinicDetailsPage extends StatelessWidget {
                           )
                         : SizedBox(
                             height: 300.h,
-                            child: Center(
+                            child: const Center(
                               child: Icon(
                                 Icons.broken_image,
                                 color: Colors.grey,
@@ -91,7 +91,7 @@ class ClinicDetailsPage extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.star_rounded,
                                 size: 24,
                                 color: Colors.amber,

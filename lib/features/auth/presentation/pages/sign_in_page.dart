@@ -121,11 +121,11 @@ class _SignInPageState extends State<SignInPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Hello ! 👋🏻",
                             style: AppTextStyles.heading01SemiBold,
                           ),
-                          Text(
+                          const Text(
                             "Enter your account details to log in.",
                             style: AppTextStyles.paragraph02Regular,
                           ),

@@ -1,6 +1,7 @@
 import 'package:glowguide/core/constants/app_assets.dart';
 import 'package:glowguide/core/constants/app_text_styles.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/onboarding/widgets/page_indicator.dart';
 import 'package:glowguide/features/onboarding/pages/get_started_page.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 setState(() => currentPage = index);
 
                 if (index == 3) {
-                  CacheHelper().saveData(key: "SeenOnboarding", value: true);
+                  sl<CacheHelper>()
+                      .saveData(key: "SeenOnboarding", value: true);
 
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -128,11 +130,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   SizedBox(height: 40.h),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w400,
                       fontSize: 20,
-                      color: const Color(0xFF393E46),
+                      color: Color(0xFF393E46),
                     ),
                   ),
                 ],

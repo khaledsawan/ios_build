@@ -32,7 +32,7 @@ class PhoneInputField extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(
             labelText: hint,
-            border: OutlineInputBorder(borderSide: BorderSide()),
+            border: const OutlineInputBorder(borderSide: BorderSide()),
           ),
           initialCountryCode: 'AE',
         ),

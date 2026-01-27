@@ -65,7 +65,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => AuthLayout(),
+                    builder: (_) => const AuthLayout(),
                   ),
                   (routes) => false);
             }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:glowguide/core/databases/api/api_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInService {
@@ -60,14 +61,15 @@ class GoogleAuthRepository {
     final user = response['user'] ?? {};
 
     // Save tokens & user info
-    final accessSaved =
-        await CacheHelper().saveData(key: ApiKey.access, value: accessToken);
-    await CacheHelper().saveData(key: ApiKey.refresh, value: refreshToken);
-    await CacheHelper().saveData(key: ApiKey.userID, value: user['id']);
-    await CacheHelper().saveData(key: ApiKey.type, value: "U");
+    final accessSaved = await sl<CacheHelper>()
+        .saveData(key: ApiKey.access, value: accessToken);
+    await sl<CacheHelper>().saveData(key: ApiKey.refresh, value: refreshToken);
+    await sl<CacheHelper>().saveData(key: ApiKey.userID, value: user['id']);
+    await sl<CacheHelper>().saveData(key: ApiKey.type, value: "U");
     await CacheHelper()
         .saveData(key: ApiKey.userFullName, value: user['fullname']);
-    await CacheHelper().saveData(key: ApiKey.userEmail, value: user['email']);
+    await sl<CacheHelper>()
+        .saveData(key: ApiKey.userEmail, value: user['email']);
     if (user['profile_pic'] != null) {
       await CacheHelper()
           .saveData(key: ApiKey.userProfileImage, value: user['profile_pic']);

@@ -22,7 +22,7 @@ class OwnerMyClinicsTab extends StatelessWidget {
               children: [
                 _appBar(context),
                 SizedBox(height: 18.h),
-                MyClinicsTabList(),
+                const MyClinicsTabList(),
                 SizedBox(height: 23.h),
                 _addNewClinicButton(context),
               ],
@@ -68,7 +68,7 @@ class OwnerMyClinicsTab extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("My Clinics", style: AppTextStyles.heading01SemiBold),
+        const Text("My Clinics", style: AppTextStyles.heading01SemiBold),
         IconButton(
           onPressed: () {
             Navigator.push(

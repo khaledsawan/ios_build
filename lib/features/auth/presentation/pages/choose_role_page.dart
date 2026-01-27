@@ -29,9 +29,9 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 50.h),
         child: Column(
           children: [
-            Text("Welcome to GlowGuide  🎉",
+            const Text("Welcome to GlowGuide  🎉",
                 style: AppTextStyles.heading01SemiBold),
-            Text(
+            const Text(
               "Enter your info to create new account",
               style: AppTextStyles.paragraph02Regular,
             ),
@@ -74,7 +74,7 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -99,7 +99,7 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
                         debugPrint('Could not launch $url');
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       "By ticking, you are confirming, and agree to our Privacy Policy & Terms and Conditions.",
                       style: AppTextStyles.paragraph02SemiBold,
                     ),

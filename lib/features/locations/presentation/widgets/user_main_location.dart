@@ -44,7 +44,7 @@ class UserMainLocation extends StatelessWidget {
 
           return _buildUI(context, defaultLocation.address);
         } else {
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }
       },
     );

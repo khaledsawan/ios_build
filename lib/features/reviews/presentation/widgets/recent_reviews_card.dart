@@ -32,7 +32,7 @@ class RecentReviewsCard extends StatelessWidget {
           final reviews = state.reviews;
 
           if (reviews.isEmpty) {
-            return SizedBox(
+            return const SizedBox(
               height: 120,
               child: Center(child: Text("No Current Reviews")),
             );
@@ -151,7 +151,7 @@ class RecentReviewsCard extends StatelessWidget {
                               reviews.reviewRating.toString(),
                               style: AppTextStyles.footerRegular,
                             ),
-                            SizedBox(width: 3),
+                            const SizedBox(width: 3),
                           ],
                         ),
                       ),

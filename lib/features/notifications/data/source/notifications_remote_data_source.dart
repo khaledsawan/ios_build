@@ -2,6 +2,7 @@ import 'package:glowguide/core/databases/api/api_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/notifications/data/models/notification_model.dart';
 import 'package:glowguide/features/notifications/data/models/post_notification_model.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +13,7 @@ class NotificationsRemoteDataSource {
   NotificationsRemoteDataSource({required this.api});
 
   Future<List<NotificationModel>> getNotifications() async {
-    final String access = await CacheHelper().getData(key: ApiKey.access);
+    final String access = await sl<CacheHelper>().getData(key: ApiKey.access);
 
     final response = await api.get(
       EndPoints.getNotifications,
@@ -25,7 +26,7 @@ class NotificationsRemoteDataSource {
   Future<PostNotificationModel> postNotification(
     NotificationParams params,
   ) async {
-    final String access = await CacheHelper().getData(key: ApiKey.access);
+    final String access = await sl<CacheHelper>().getData(key: ApiKey.access);
 
     final response = await api.post(
       EndPoints.createNotification,

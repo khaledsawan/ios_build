@@ -39,7 +39,7 @@ class AdminClinicsTab extends StatelessWidget {
             ),
           ),
         ],
-        body: TabBarView(
+        body: const TabBarView(
           children: [CurrentClinicSubTab(), PendingClinicsSubTab()],
         ),
       ),

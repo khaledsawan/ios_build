@@ -58,7 +58,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
             hintText: widget.hint,
             filled: true,
             fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(horizontal: 16),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(color: AppColors.gary03, width: 1),

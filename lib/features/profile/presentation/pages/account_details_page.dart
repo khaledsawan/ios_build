@@ -3,6 +3,7 @@ import 'package:glowguide/core/constants/app_colors.dart';
 import 'package:glowguide/core/constants/app_text_styles.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/core/widgets/loading_interface.dart';
 import 'package:glowguide/features/delete_account/presentation/cubit/delete_account_cubit.dart';
 import 'package:glowguide/features/delete_account/presentation/pages/delete_account_page.dart';
@@ -22,7 +23,7 @@ class AccountDetailsPage extends StatelessWidget {
     return BlocBuilder<AccountDetailsCubit, AccountDetailsStates>(
       builder: (context, state) {
         if (state is GetAccountDetailsLoading) {
-          return LoadingInterface();
+          return const LoadingInterface();
         }
 
         if (state is GetAccountDetailsFailure) {
@@ -37,7 +38,7 @@ class AccountDetailsPage extends StatelessWidget {
                   child: Text(
                     state.errMessage,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.error12),
+                    style: const TextStyle(color: AppColors.error12),
                   ),
                 ),
               ),
@@ -74,7 +75,7 @@ class AccountDetailsPage extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => BlocProvider(
                                       create: (context) => DeleteAccountCubit(),
-                                      child: DeleteAccountPage(),
+                                      child: const DeleteAccountPage(),
                                     )));
                       },
                       icon: const Icon(Icons.delete),
@@ -101,7 +102,7 @@ class AccountDetailsPage extends StatelessWidget {
   }
 
   Container _profileInfo(BuildContext context, AccountDetailsEntity user) {
-    final userLocation = CacheHelper().getData(key: ApiKey.mainLocation);
+    final userLocation = sl<CacheHelper>().getData(key: ApiKey.mainLocation);
 
     return Container(
       padding: EdgeInsets.all(16.w),
@@ -112,7 +113,7 @@ class AccountDetailsPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Profile Info", style: AppTextStyles.paragraph02SemiBold),
+          const Text("Profile Info", style: AppTextStyles.paragraph02SemiBold),
           SizedBox(height: 16.h),
           _infoOption(context, Icons.person, user.name),
           SizedBox(height: 16.h),
@@ -166,7 +167,8 @@ class AccountDetailsPage extends StatelessWidget {
   }
 
   Container _userDetails(AccountDetailsEntity user) {
-    final profileImage = CacheHelper().getData(key: ApiKey.userProfileImage);
+    final profileImage =
+        sl<CacheHelper>().getData(key: ApiKey.userProfileImage);
 
     return Container(
       padding: EdgeInsets.all(16.w),
@@ -202,7 +204,8 @@ class AccountDetailsPage extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text("Account Details", style: AppTextStyles.paragraph02SemiBold),
+      title: const Text("Account Details",
+          style: AppTextStyles.paragraph02SemiBold),
       actions: [
         GestureDetector(
           onTap: () {

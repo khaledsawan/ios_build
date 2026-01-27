@@ -35,7 +35,7 @@ class _CategorySelectorState extends State<CategorySelector> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("By Category", style: AppTextStyles.paragraph02SemiBold),
+          const Text("By Category", style: AppTextStyles.paragraph02SemiBold),
           SizedBox(height: 8.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

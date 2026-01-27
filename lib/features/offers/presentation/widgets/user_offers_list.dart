@@ -35,7 +35,7 @@ class UserOffersList extends StatelessWidget {
       return ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
-          SizedBox(height: 200),
+          const SizedBox(height: 200),
           Center(
             child: Text(
               state.errMessage,
@@ -88,7 +88,7 @@ class UserOffersList extends StatelessWidget {
                           ),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 16,
                   left: 16,
                   child: SizedBox(

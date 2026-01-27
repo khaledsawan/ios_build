@@ -18,7 +18,7 @@ class NotificationsPage extends StatelessWidget {
       create: (context) => NotificationsCubit()..getCurrentUserNotifications(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Notifications", style: AppTextStyles.heading01SemiBold),
+          title: const Text("Notifications", style: AppTextStyles.heading01SemiBold),
           backgroundColor: Colors.white,
         ),
         body: BlocConsumer<NotificationsCubit, NotificationsStates>(

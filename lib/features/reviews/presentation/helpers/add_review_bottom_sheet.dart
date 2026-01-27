@@ -2,6 +2,7 @@ import 'package:glowguide/core/constants/app_colors.dart';
 import 'package:glowguide/core/constants/app_text_styles.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/core/widgets/custom_scaffold_messenger.dart';
 import 'package:glowguide/features/clinics/domain/entities/clinic_entity.dart';
 import 'package:glowguide/features/reviews/presentation/cubit/reviews_cubit.dart';
@@ -75,7 +76,7 @@ BlocConsumer<ReviewsCubit, ReviewsStates> _content({
               SizedBox(height: 16.h),
               _header(context),
               SizedBox(height: 16.h),
-              RateSelector(),
+              const RateSelector(),
               SizedBox(height: 16.h),
               _yourReview(errorMessage: errorMessage, controller: controller),
               SizedBox(height: 44.h),
@@ -83,8 +84,8 @@ BlocConsumer<ReviewsCubit, ReviewsStates> _content({
                 onPressed: isLoading
                     ? null
                     : () {
-                        final String? selectedRatingStr = CacheHelper()
-                            .getDataString(key: "SelectedRating");
+                        final String? selectedRatingStr =
+                            CacheHelper().getDataString(key: "SelectedRating");
 
                         final int rating =
                             int.tryParse(selectedRatingStr ?? '') ?? 0;
@@ -97,23 +98,23 @@ BlocConsumer<ReviewsCubit, ReviewsStates> _content({
 
                         context.read<ReviewsCubit>().writeNewReview(params);
 
-                        CacheHelper().removeData(key: "SelectedRating");
+                        sl<CacheHelper>().removeData(key: "SelectedRating");
                       },
                 style: isLoading
                     ? Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                        backgroundColor: WidgetStateProperty.all(Colors.grey),
-                        padding: WidgetStateProperty.all(
-                          const EdgeInsets.symmetric(
-                            vertical: 12,
-                            horizontal: 20,
+                          backgroundColor: WidgetStateProperty.all(Colors.grey),
+                          padding: WidgetStateProperty.all(
+                            const EdgeInsets.symmetric(
+                              vertical: 12,
+                              horizontal: 20,
+                            ),
                           ),
-                        ),
-                        shape: WidgetStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
-                        ),
-                      )
+                        )
                     : null,
                 child: isLoading
                     ? const SizedBox(
@@ -169,7 +170,7 @@ Column _yourReview({
         SizedBox(height: 8.h),
         Text(
           errorMessage,
-          style: TextStyle(color: AppColors.error12, fontSize: 14),
+          style: const TextStyle(color: AppColors.error12, fontSize: 14),
         ),
       ],
     ],
@@ -213,7 +214,7 @@ class _RateSelectorState extends State<RateSelector> {
                   setState(() {
                     selectedRating = starIndex;
 
-                    CacheHelper().saveData(
+                    sl<CacheHelper>().saveData(
                       key: "SelectedRating",
                       value: selectedRating.toString(),
                     );

@@ -80,7 +80,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("Contact Us", style: AppTextStyles.paragraph01SemiBold),
+        title: const Text("Contact Us", style: AppTextStyles.paragraph01SemiBold),
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 1,
       ),
@@ -146,7 +146,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       maxLines: 5,
                     ),
                     SizedBox(height: 24.h),
-                    Center(child: Text("GlowGuideSup@gmail.com")),
+                    const Center(child: Text("GlowGuideSup@gmail.com")),
                     SizedBox(height: 16.h),
                     SizedBox(
                       width: double.infinity,

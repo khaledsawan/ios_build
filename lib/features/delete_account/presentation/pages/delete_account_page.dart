@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/layouts/auth_layout.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/core/widgets/custom_input_field.dart';
 import 'package:glowguide/features/delete_account/presentation/cubit/delete_account_cubit.dart';
 import 'package:glowguide/features/delete_account/presentation/cubit/delete_account_state.dart';
@@ -61,11 +62,11 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
             ),
           );
 
-          CacheHelper().clearData();
+          sl<CacheHelper>().clearData();
 
           if (mounted) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AuthLayout()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const AuthLayout()));
           }
         } else if (state is DeleteAccountFailed) {
           showDialog(
@@ -164,7 +165,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                     const SizedBox(height: 32),
 
                     isLoading
-                        ? Center(child: CircularProgressIndicator())
+                        ? const Center(child: CircularProgressIndicator())
                         : ElevatedButton.icon(
                             onPressed: _deleteAccount,
                             icon: const Icon(Icons.delete),

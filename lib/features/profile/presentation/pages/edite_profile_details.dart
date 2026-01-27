@@ -68,7 +68,7 @@ class _EditeProfileDetailsState extends State<EditeProfileDetails> {
                         onPressed: null,
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.grey),
-                        child: CircularProgressIndicator(),
+                        child: const CircularProgressIndicator(),
                       )
                     : _saveButton(),
                 SizedBox(height: 40.h),
@@ -84,7 +84,7 @@ class _EditeProfileDetailsState extends State<EditeProfileDetails> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Profile Info", style: AppTextStyles.paragraph01SemiBold),
+        const Text("Profile Info", style: AppTextStyles.paragraph01SemiBold),
         SizedBox(height: 16.h),
         CustomInputField(
           label: "Username",
@@ -128,7 +128,7 @@ class _EditeProfileDetailsState extends State<EditeProfileDetails> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Profile Picture", style: AppTextStyles.paragraph01SemiBold),
+        const Text("Profile Picture", style: AppTextStyles.paragraph01SemiBold),
         SizedBox(height: 16.h),
         Center(
           child: GestureDetector(
@@ -187,7 +187,7 @@ class _EditeProfileDetailsState extends State<EditeProfileDetails> {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text("Edit Details", style: AppTextStyles.paragraph02SemiBold),
+      title: const Text("Edit Details", style: AppTextStyles.paragraph02SemiBold),
       actions: [
         GestureDetector(
           onTap: () => Navigator.pop(context),
@@ -195,7 +195,7 @@ class _EditeProfileDetailsState extends State<EditeProfileDetails> {
             padding: EdgeInsets.all(16.w),
             child: Row(
               children: [
-                Icon(Icons.close, size: 24, color: const Color(0xFFDD0011)),
+                const Icon(Icons.close, size: 24, color: Color(0xFFDD0011)),
                 Text(
                   "Cancel",
                   style: AppTextStyles.paragraph01SemiBold.copyWith(

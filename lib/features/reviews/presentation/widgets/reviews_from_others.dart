@@ -32,7 +32,7 @@ class ReviewsFromOthers extends StatelessWidget {
           final reviews = state.reviews;
 
           if (reviews.isEmpty) {
-            return SizedBox(
+            return const SizedBox(
               height: 130,
               child: Center(child: Text("No Current Reviews")),
             );
@@ -153,13 +153,13 @@ class ReviewsFromOthers extends StatelessWidget {
                               reviews.reviewRating.toString(),
                               style: AppTextStyles.footerRegular,
                             ),
-                            SizedBox(width: 3),
+                            const SizedBox(width: 3),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Text(reviews.clinicDetails.clinicName,

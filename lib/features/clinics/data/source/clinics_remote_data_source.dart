@@ -4,6 +4,7 @@ import 'package:glowguide/core/databases/api/api_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
+import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/clinics/data/models/admin_approve_reject_clinic_model.dart';
 import 'package:glowguide/features/clinics/data/models/clinic_model.dart';
 import 'package:glowguide/features/clinics/data/models/create_new_clinic_model.dart';
@@ -15,7 +16,7 @@ class ClinicsRemoteDataSource {
   ClinicsRemoteDataSource({required this.api});
 
   Future<List<ClinicModel>> getClinics() async {
-    final String accessKey = CacheHelper().getData(key: ApiKey.access);
+    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     final response = await api.get(
       EndPoints.getClinics,
@@ -30,7 +31,7 @@ class ClinicsRemoteDataSource {
   Future<CreateNewClinicModel> createNewClinic(
     CreateNewClinicParams params,
   ) async {
-    final String accessKey = CacheHelper().getData(key: ApiKey.access);
+    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     final Map<String, dynamic> data = {
       "name": params.clinicName,
@@ -73,7 +74,7 @@ class ClinicsRemoteDataSource {
   Future<AdminApproveRejectClinicModel> adminApproveRejectClinic({
     required AdminApproveRejectClinicParams params,
   }) async {
-    final String accessKey = CacheHelper().getData(key: ApiKey.access);
+    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
     final String clinicID = params.clinicID;
 
     await api.patch(

@@ -22,7 +22,7 @@ class DeleteAccountRepositoryImpl extends DeleteAccountRepository {
       try {
         await remoteDataSource.deleteAccount(params);
 
-        return Right(null);
+        return const Right(null);
       } on ServerException catch (e) {
         return Left(Failure(errMessage: e.errorModel.errorMessage));
       }
