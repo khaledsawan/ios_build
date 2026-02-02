@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:glowguide/core/databases/api/api_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
@@ -8,7 +9,6 @@ import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/clinics/data/models/admin_approve_reject_clinic_model.dart';
 import 'package:glowguide/features/clinics/data/models/clinic_model.dart';
 import 'package:glowguide/features/clinics/data/models/create_new_clinic_model.dart';
-import 'package:dio/dio.dart';
 
 class ClinicsRemoteDataSource {
   final ApiConsumer api;
@@ -16,11 +16,13 @@ class ClinicsRemoteDataSource {
   ClinicsRemoteDataSource({required this.api});
 
   Future<List<ClinicModel>> getClinics() async {
-    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
+    final String? accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     final response = await api.get(
       EndPoints.getClinics,
-      options: Options(headers: {"Authorization": "Bearer $accessKey"}),
+      options: Options(headers: {
+        if (accessKey != null) "Authorization": "Bearer $accessKey"
+      }),
     );
 
     final List data = response as List;
@@ -31,7 +33,7 @@ class ClinicsRemoteDataSource {
   Future<CreateNewClinicModel> createNewClinic(
     CreateNewClinicParams params,
   ) async {
-    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
+    final String? accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     final Map<String, dynamic> data = {
       "name": params.clinicName,
@@ -60,7 +62,7 @@ class ClinicsRemoteDataSource {
       EndPoints.createClinic,
       options: Options(
         headers: {
-          "Authorization": "Bearer $accessKey",
+          if (accessKey != null) "Authorization": "Bearer $accessKey",
           "Content-Type": "application/json",
         },
       ),
@@ -74,12 +76,14 @@ class ClinicsRemoteDataSource {
   Future<AdminApproveRejectClinicModel> adminApproveRejectClinic({
     required AdminApproveRejectClinicParams params,
   }) async {
-    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
+    final String? accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
     final String clinicID = params.clinicID;
 
     await api.patch(
       "${EndPoints.adminApproveRejectClinic}$clinicID/manage/",
-      options: Options(headers: {"Authorization": "Bearer $accessKey"}),
+      options: Options(headers: {
+        if (accessKey != null) "Authorization": "Bearer $accessKey"
+      }),
       data: {"status": params.actionStatus},
     );
 

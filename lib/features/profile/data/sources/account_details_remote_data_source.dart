@@ -1,10 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:glowguide/core/databases/api/api_consumer.dart';
 import 'package:glowguide/core/databases/api/end_points.dart';
 import 'package:glowguide/core/databases/cache/cache_helper.dart';
 import 'package:glowguide/core/params/params.dart';
 import 'package:glowguide/core/singleton/injection_container.dart';
 import 'package:glowguide/features/profile/data/models/account_details_model.dart';
-import 'package:dio/dio.dart';
 import 'package:glowguide/features/profile/data/models/update_profile_model.dart';
 
 class AccountDetailsRemoteDataSource {
@@ -12,13 +12,13 @@ class AccountDetailsRemoteDataSource {
   AccountDetailsRemoteDataSource({required this.api});
 
   Future<AccountDetailsModel> getAccountDetails() async {
-    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
+    final String? accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     final response = await api.get(
       EndPoints.accountDetails,
       options: Options(
         headers: {
-          'Authorization': 'Bearer $accessKey',
+          if (accessKey != null) 'Authorization': 'Bearer $accessKey',
           'Accept': 'application/json',
         },
       ),
@@ -27,7 +27,7 @@ class AccountDetailsRemoteDataSource {
   }
 
   Future<UpdateProfileModel> updateProfile(UpdateProfileParams params) async {
-    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
+    final String? accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     FormData formData = FormData();
 
@@ -58,7 +58,7 @@ class AccountDetailsRemoteDataSource {
       data: formData,
       options: Options(
         headers: {
-          'Authorization': 'Bearer $accessKey',
+          if (accessKey != null) 'Authorization': 'Bearer $accessKey',
           'Content-Type': 'multipart/form-data',
           'Accept': 'application/json',
         },

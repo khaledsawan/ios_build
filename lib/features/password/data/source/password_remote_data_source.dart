@@ -32,11 +32,13 @@ class PasswordRemoteDataSource {
 
   Future<void> resetPasswordByPassword(
       ResetPasswordByPasswordParams params) async {
-    final String accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
+    final String? accessKey = sl<CacheHelper>().getData(key: ApiKey.access);
 
     await api.post(
       EndPoints.resetPasswordByPassword,
-      options: Options(headers: {"Authorization": "Bearer $accessKey"}),
+      options: Options(headers: {
+        if (accessKey != null) "Authorization": "Bearer $accessKey"
+      }),
       data: {
         "old_password": params.oldPassword,
         "new_password": params.newPassword,
