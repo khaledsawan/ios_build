@@ -68,10 +68,19 @@
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>نحتاج الوصول إلى الصور لاختيار صورة البروفايل الخاصة بك.</string>
 
-		<key>UISupportedInterfaceOrientations</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-		</array>
+		<key>NSCameraUsageDescription</key>
+		<string>نحتاج الكاميرا لالتقاط صورة للبروفايل.</string>
 
+		<key>NSMicrophoneUsageDescription</key>
+		<string>قد نحتاج المايكروفون عند التقاط فيديو.</string>
+
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>نحتاج حفظ الصور إلى مكتبتك.</string>
+
+		<key>NSAppTransportSecurity</key>
+		<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		</dict>
 	</dict>
 </plist>

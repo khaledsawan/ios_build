@@ -40,7 +40,6 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
-  // Email/password login
   void submitEmailLogin() {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
@@ -82,27 +81,27 @@ class _SignInPageState extends State<SignInPage> {
       builder: (context, state) {
         final isEmailLoading = state is LoginUserLoading;
 
-        final googleService = GoogleSignInService();
-        final api = DioConsumer(dio: Dio());
-        final repo = GoogleAuthRepository(GoogleAuthRemoteDataSource(api));
+        // final googleService = GoogleSignInService();
+        // final api = DioConsumer(dio: Dio());
+        // final repo = GoogleAuthRepository(GoogleAuthRemoteDataSource(api));
 
-        Future<Map<String, dynamic>?> signInWithGoogle() async {
-          // 1️⃣ Sign out previous session
-          await googleService.signOut();
+        // Future<Map<String, dynamic>?> signInWithGoogle() async {
+        //   // 1️⃣ Sign out previous session
+        //   await googleService.signOut();
 
-          // 2️⃣ Start a new Google sign-in
-          final idToken = await googleService.signInAndGetIdToken();
+        //   // 2️⃣ Start a new Google sign-in
+        //   final idToken = await googleService.signInAndGetIdToken();
 
-          if (idToken == null) {
-            // print('Google sign-in cancelled');
-            return null;
-          }
+        //   if (idToken == null) {
+        //     // print('Google sign-in cancelled');
+        //     return null;
+        //   }
 
-          // 3️⃣ Login to backend
-          final result = await repo.loginWithGoogle(idToken);
-          // print('Google login done: ${result['user']}');
-          return result;
-        }
+        //   // 3️⃣ Login to backend
+        //   final result = await repo.loginWithGoogle(idToken);
+        //   // print('Google login done: ${result['user']}');
+        //   return result;
+        // }
 
         return PopScope(
           canPop: false,
@@ -236,19 +235,19 @@ class _SignInPageState extends State<SignInPage> {
                           SizedBox(height: 15.h),
                           SocialBottons(
                             googleAuth: () async {
-                              try {
-                                final result = await signInWithGoogle();
+                              // try {
+                              //   final result = await signInWithGoogle();
 
-                                if (result != null && context.mounted) {
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AuthLayout()),
-                                    (route) => false,
-                                  );
-                                }
-                              } finally {}
+                              //   if (result != null && context.mounted) {
+                              //     await Navigator.pushAndRemoveUntil(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //           builder: (context) =>
+                              //               const AuthLayout()),
+                              //       (route) => false,
+                              //     );
+                              //   }
+                              // } finally {}
                             },
                             appleAuth: () {},
                             facebookAuth: () {},
